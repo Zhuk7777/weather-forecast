@@ -1,0 +1,163 @@
+.addInfo {
+    float: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-right: 20px;
+    padding: 20px;
+
+    width: 750px;
+    height: 70px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.sunrise {
+    display: inline-block;
+    padding: 6px;
+    border: solid 1px rgb(247, 158, 34);
+    border-radius: 6px;
+    margin-right: 6px;
+}
+
+.sunset {
+    display: inline-block;
+    padding: 6px;
+    border: solid 1px rgb(92, 99, 239);
+    border-radius: 6px;
+    margin-left: 6px;
+}
+
+.pressure{
+    margin: 6px;
+    margin-left: 10px;
+}
+
+.morning {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1;
+
+
+    margin-left: 20px;
+    margin-top: 7px;
+    margin-right: 20px;
+    padding: 30px;
+    padding-top: 20px;
+
+    width: 750px;
+    height: 70px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.day {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1;
+
+
+    margin-left: 20px;
+    margin-top: 7px;
+    margin-right: 20px;
+    padding: 30px;
+    padding-top: 20px;
+
+    width: 750px;
+    height: 70px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.nigth {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1;
+
+
+    margin-left: 20px;
+    margin-top: 7px;
+    margin-right: 20px;
+    padding: 30px;
+    padding-top: 20px;
+
+    width: 750px;
+    height: 70px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.evening {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1;
+
+
+    margin-left: 20px;
+    margin-top: 7px;
+    margin-right: 20px;
+    padding: 30px;
+    padding-top: 20px;
+
+    width: 750px;
+    height: 70px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.description {
+    margin: 6px;
+    margin-left: 10px;
+}
+
+.temp {
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.time {
+    margin: 6px;
+}
+
+.humidity {
+    margin: 6px;
+    margin-left: 10px;
+}
+
+.wind {
+    margin: 6px;
+    margin-left: 10px
+}
+
+.img {
+    width: 40px;
+    height: 40px;
+}

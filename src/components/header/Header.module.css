@@ -1,21 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Gloria+Hallelujah&family=Permanent+Marker&family=Satisfy&display=swap');
+
 .title {
     margin-bottom: 15px;
-    font-style: italic;
+    font-family: 'Gloria Hallelujah', cursive;
     font-size: 40px;
     line-height: 52px;
     text-align: center;
     font-weight: 700px;
-    color: rgb(64, 79, 91);
+    color: rgb(136, 75, 96);
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150px;
+    height: 144px;
     padding: 30px 15px 50px;
-    background: linear-gradient(#e66465, #9198e5);
-    border-radius: 0 0 15px 15px;
+    background: linear-gradient(#9198e5, #e66465);
 
 }
 
@@ -41,14 +42,49 @@
     line-height: 1;
 
     width: 145px;
-    background: #e6464f;
+    background: #9198e5;
     border-radius: 6px;
-    border-color: #e6464f;
+    border-color: #9198e5;
     color: aliceblue;
 }
 
 .btn:hover {
-    background: #ed3640;
+    background: #828aea;
     transform: scale(1.02);
     cursor: pointer;
 }
+
+.popupHint {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+   
+    border: solid aliceblue;
+    border-radius: 0 0 6px 6px;
+    width: 266px;
+    line-height: 1;
+    background-color: aliceblue;
+    margin-top: 102px;
+    margin-right: 145px;
+
+}
+
+.popupHintNoActive {
+    display: none;
+}
+
+.hintItem {
+    border: aliceblue;
+    background: aliceblue;
+    color: black;
+
+    font-weight: 40;
+    font-size: 16px;
+}
+
+.hintItem:hover {
+    background: rgb(212, 221, 228);
+    cursor: pointer;
+
+}
+

@@ -1,66 +1,62 @@
 import React, { useState } from "react";
 import Header from "./components/header/Header";
 import './styles/App.css';
-import Card from "./components/card/Card";
-import conditions from "./dictionary";
+import ControlPanel from "./components/сontrolPanel/ControlPanel";
+import InfoField from "./components/infoField/InfoField";
 
 const apiKey='6c2cf4ff55624dee90594748232304'
 
 function App() {
-  const [weatherInfo, setWeatherInfo] = useState({city: '', country: '', temp: '', description: '', date: '', img: ''})
-  const [visibleCard, setVisibleCard] = useState(false)
-  const [error, setError] = useState(false)
+
+  const [selection, setSelection] = useState('today')
+  const [error,setError] = useState(false)
+  const [data, setData] = useState('')
+  const [addData, setAddData] = useState('')
+
+  const getSelection = (selection) => {
+    setSelection(selection)
+  }
+
 
   const getCity = (city) => {
 
-    let urlToday =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
-    let urlWeek =`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
+    let url1 =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
+    let url2 =`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=1`
 
-    fetch(urlToday).then((response) => {
+    fetch(url1).then((response) => {
       return response.json()
     }).then((data) => {
 
       if(data.error)
       {
         setError(true)
-        setVisibleCard(false)
+        setData('')
+        setAddData('')
       }
 
       else
       {
-        let isDay = data.current.is_day
-        let description = conditions.find((obj) => obj.code === data.current.condition.code)
 
-        if(isDay === 1)
-          isDay = 'day_text'
-        else
-          isDay = 'night_text'
-        
-        setWeatherInfo({city: `${data.location.name}`, country: `${data.location.country}`, temp: data.current.temp_c, description: `${description.languages[23][isDay]}`, date: data.location.localtime, img: `${data.current.condition.icon}`})
+        fetch(url2).then((res) => {
+          return res.json()
+        }).then((addData) => {
+
+          setData(data)
+          setAddData(addData)
+        })
 
         setError(false)
-        setVisibleCard(true)
       }
 
     })
-
-
-    fetch(urlWeek).then((response) => {
-      return response.json()
-    }).then((data) => {
-      //console.log(data)
-    })
-
   }
+
 
   return (
     <div className="App">
       <Header getCity={getCity} error={error}/>
-
-      <Card city={weatherInfo.city} country={weatherInfo.country} 
-        degrees={weatherInfo.temp} weather={weatherInfo.description} date={weatherInfo.date}
-        img={weatherInfo.img} visible={visibleCard}/>
-
+      <ControlPanel getSelection={getSelection}/>
+      <InfoField data={data} addData={addData} selection={selection}/>
     </div>
   );
 }
