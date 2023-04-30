@@ -1,0 +1,65 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 30px;
+
+    width: 420px;
+    background-color: rgb(58, 56, 56);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.cardNoActive {
+    display: none;
+}
+
+.cardDate {
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 33px; 
+}
+
+.cardCity {
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 33px;
+}
+
+.cardCountry {
+    display: inline-block;
+    padding: 3px 5px;
+    background: #e6464f;
+    border-radius: 6px;
+    vertical-align: text-top;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.cardWeather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardValue {
+    font-size: 75px;
+    line-height: 1;
+}
+
+.cardImg {
+    width: 100px;
+    height: 100px;
+}
+
+
+.cardDescription {
+    font-size: 20px;
+    line-height: 1.2;
+}
