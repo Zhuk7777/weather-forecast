@@ -23,7 +23,7 @@ const Tomorrow = ({data}) => {
       let arrWind = []
       let arrHumidity =[]
   
-      for(let i=0, j=0; i<21; i+=3, j++)
+      for(let i=0, j=0; i<24; i+=3, j++)
       {
         if(j < 4)
           arrTime[j] = `0${i}:00`
