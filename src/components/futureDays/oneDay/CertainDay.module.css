@@ -1,0 +1,121 @@
+.card {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 11px;
+    margin-left: 20px;
+    width: 750px;
+
+    background-color: rgb(58, 56, 56);
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px #040404;
+    color: aliceblue;
+}
+
+.image {
+    display: flex;
+    flex-direction: row;
+
+    line-height: 1;
+    margin-left: 20px;
+    height: 60px;
+    
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1;
+
+    padding: 20px;
+    height: 60px;
+}
+
+.humidity {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1;
+
+    padding: 20px;
+    height: 60px;
+}
+
+.wind {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1;
+
+    padding: 20px;
+    height: 60px;
+}
+
+.temp {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1;
+
+    padding: 20px;
+    height: 60px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1;
+
+    padding: 20px;
+    height: 60px;
+    margin-left: 10px;
+}
+
+.city {
+    margin-right: 10px;
+    padding: 1px;
+}
+
+.date {
+    padding: 1px;
+}
+.item {
+    height: 55px;
+    width: 55px;
+    text-align: center;
+
+    margin-left: 40px;
+}
+
+.caption {
+    margin-left: 30px;
+    font-size: 17px;
+
+}
+
+.temp:hover {
+    border: solid 1px aliceblue;
+    background: #e4293c;
+}
+
+.wind:hover {
+    border: solid 1px aliceblue;
+    background: rgb(151, 165, 177);
+}
+
+.humidity:hover {
+    border: solid 1px aliceblue;
+    background: rgb(107, 175, 235);
+}

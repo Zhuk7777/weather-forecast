@@ -21,7 +21,7 @@ function App() {
   const getCity = (city) => {
 
     let url1 =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
-    let url2 =`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=1`
+    let url2 =`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7`
 
     fetch(url1).then((response) => {
       return response.json()

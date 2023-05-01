@@ -4,6 +4,7 @@ import AdditionalInfo from "./additionalInfo/AdditionalInfo";
 import Card from "./card/Card";
 
 const Today = ({data, addData}) =>{
+  
     const [weatherInfo, setWeatherInfo] = useState({
         city: '', 
         country: '', 
@@ -69,7 +70,7 @@ const Today = ({data, addData}) =>{
 
             }, [data, addData])
 
-
+            
     return(
         <div>
                 <Card city={weatherInfo.city} country={weatherInfo.country} 
@@ -89,8 +90,6 @@ const Today = ({data, addData}) =>{
                     imgNight={weatherInfo.img_night} imgMorning={weatherInfo.img_morning} 
                     imgDay={weatherInfo.img_day} imgEvening={weatherInfo.img_evening} 
                 />
-
-
         </div>
     )
 }
