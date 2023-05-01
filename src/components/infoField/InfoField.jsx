@@ -1,5 +1,5 @@
 import React from "react";
-import Day from "../day/Day";
+import Today from "../day/Today";
 
 const InfoField = ({data, addData, selection}) => {
 
@@ -7,9 +7,9 @@ const InfoField = ({data, addData, selection}) => {
         <div>
           { data!==''?
                 selection==='today'?
-                <Day data={data} addData={addData}/>
+                <Today data={data} addData={addData}/>
                 :selection==='week'?
-                  <Day data={data} addData={addData}/>
+                  <Today data={data} addData={addData}/>
                   :<span></span>
             :<span></span>
           }

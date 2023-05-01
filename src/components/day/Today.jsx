@@ -1,9 +1,9 @@
 import React, { useEffect, useState }  from "react";
-import Card from "../card/Card";
-import AdditionalInfo from "../additionalInfo/AdditionalInfo";
 import conditions from "../../dictionary";
+import AdditionalInfo from "./additionalInfo/AdditionalInfo";
+import Card from "./card/Card";
 
-const Day = ({data, addData}) =>{
+const Today = ({data, addData}) =>{
     const [weatherInfo, setWeatherInfo] = useState({
         city: '', 
         country: '', 
@@ -90,8 +90,9 @@ const Day = ({data, addData}) =>{
                     imgDay={weatherInfo.img_day} imgEvening={weatherInfo.img_evening} 
                 />
 
+
         </div>
     )
 }
 
-export default Day;
+export default Today;
