@@ -35,3 +35,32 @@
     font-size: 25px;
     line-height: 33px; 
 }
+
+.card:hover {
+    border: 1px solid aliceblue;
+    cursor: pointer;
+    opacity: 0.9;
+    transform: translateY(-25px);
+}
+
+.certainDay {
+    display: flex;
+    flex-direction: row;
+}
+
+.back {
+    width: 60px;
+    font-size: 18px;
+
+    margin-top: 11px;
+
+    background: #454444;
+    border-radius: 15px;
+    border: solid 1.5px #1b1b1b;
+    color: aliceblue;
+}
+
+.back:hover {
+    border-color: aliceblue;
+    transform: scale(1.005);
+}

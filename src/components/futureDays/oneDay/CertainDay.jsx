@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faGaugeHigh, faMoon, faSun, faTreeCity } from "@fortawesome/free-solid-svg-icons";
 import convertTime12to24 from "../../../generalfunctions/convertTime12to24";
 
-const Tomorrow = ({data}) => {
+const CertainDay = ({data, city}) => {
 
 
   const [time, setTime] = useState('')
@@ -21,8 +21,6 @@ const Tomorrow = ({data}) => {
   })
 
   useEffect( () => {
-
-      console.log(data)
       let arrTime = []
       let arrImage = []
       let arrTemp = []
@@ -36,22 +34,22 @@ const Tomorrow = ({data}) => {
         else
           arrTime[j] = `${i}:00`
   
-        arrImage[j] = `${data.forecast.forecastday[1].hour[i].condition.icon}`
-        arrTemp[j] = data.forecast.forecastday[1].hour[i].temp_c
-        arrWind[j] = (data.forecast.forecastday[1].hour[i].wind_kph*0.27).toFixed(2)
-        arrHumidity[j] = data.forecast.forecastday[1].hour[i].humidity
+        arrImage[j] = `${data.hour[i].condition.icon}`
+        arrTemp[j] = data.hour[i].temp_c
+        arrWind[j] = (data.hour[i].wind_kph*0.27).toFixed(2)
+        arrHumidity[j] = data.hour[i].humidity
   
       }
 
       let options = { weekday: 'long', month: 'long', day: 'numeric'}
-      let today  = new Date(data.forecast.forecastday[1].date)
+      let today  = new Date(data.date)
 
       setHeaderInfo({
-        city: data.location.name,
+        city: city,
         date: today.toLocaleDateString("rus", options),
-        pressure: (data.forecast.forecastday[1].hour[13].pressure_mb*0.75).toFixed(2),
-        sunrise: data.forecast.forecastday[1].astro.sunrise,
-        sunset:  data.forecast.forecastday[1].astro.sunset
+        pressure: (data.hour[13].pressure_mb*0.75).toFixed(2),
+        sunrise: data.astro.sunrise,
+        sunset:  data.astro.sunset
 
       })
 
@@ -61,7 +59,7 @@ const Tomorrow = ({data}) => {
       setWind(arrWind)
       setHumidity(arrHumidity)
 
-  }, [data])
+  }, [data, city])
 
     return (
       headerInfo.city === ''? <div></div>:
@@ -129,4 +127,4 @@ const Tomorrow = ({data}) => {
     )
 }
 
-export default Tomorrow;
+export default CertainDay;
