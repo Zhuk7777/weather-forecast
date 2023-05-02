@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import classes from './ThreeDays.module.css';
+import classes from './Week.module.css';
 import conditions from "../../../dictionary";
 import CertainDay from "../oneDay/CertainDay";
 
-const ThreeDays = ({data}) => {
-
+const Week = ({data}) => {
     const [daysInfo, setdaysInfo] = useState([])
 
     const [visibleCertainDay, setVisibleCertainDay] = useState(false)
@@ -17,7 +16,7 @@ const ThreeDays = ({data}) => {
         let options = { weekday: 'long', month: 'long', day: 'numeric'}
         let today  = new Date()
 
-        for(let i=0; i<3; i++)
+        for(let i=0; i<7; i++)
         {
             today  = new Date(data.forecast.forecastday[i].date)
 
@@ -60,4 +59,4 @@ const ThreeDays = ({data}) => {
     )
 }
 
-export default ThreeDays;
+export default Week;

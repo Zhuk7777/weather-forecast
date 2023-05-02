@@ -2,6 +2,7 @@ import React from "react";
 import Today from "../day/Today";
 import ThreeDays from "../futureDays/threeDays/ThreeDays";
 import CertainDay from "../futureDays/oneDay/CertainDay";
+import Week from "../futureDays/week/Week";
 
 const InfoField = ({data, addData, selection}) => {
   return(
@@ -10,7 +11,7 @@ const InfoField = ({data, addData, selection}) => {
                 selection === 'today'? <Today data={data} addData={addData}/>
                 :selection === 'tomorrow'? <CertainDay data={addData.forecast.forecastday[1]} city={data.location.name}/>
                 :selection === 'three_day'? <ThreeDays data={addData}/>
-                :<span></span>
+                :selection === 'week'? <Week data={addData}/>:<span></span>
             :<span></span>
           }
         </div>

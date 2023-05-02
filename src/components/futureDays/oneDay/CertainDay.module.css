@@ -75,7 +75,7 @@
     flex-direction: row;
 
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
 
     padding: 20px;
@@ -124,7 +124,7 @@
     padding: 4px;
     border: solid 1px rgb(247, 158, 34);
     border-radius: 6px;
-    margin-left: 170px;
+    margin-left: 20px;
     font-size: 16px;
 }
 

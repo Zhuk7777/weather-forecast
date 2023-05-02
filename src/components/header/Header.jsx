@@ -7,7 +7,7 @@ const Header = ({getCity, error}) => {
     
     const [city, setCity] = useState('')
     const [visible, setVisible] = useState(false)
-    const [cities, setCities] = useState('')
+    const [cities, setCities] = useState([])
 
     const sendCity = (event) => {
         event.preventDefault()
@@ -79,11 +79,11 @@ const Header = ({getCity, error}) => {
                 <button className={classes.btn} onClick={sendCity}>Показать</button>
             </form>
             <div className={myclass} onClick={e => e.stopPropagation()}>
-            {cities? cities.map( hint =>
+            { cities.map( hint =>
                 <button className={classes.hintItem} key={hint.id} onClick={() => clickCity(hint.name)}>
                     {hint.name}
                 </button>)
-            :<span></span>}
+            }
             </div>
         </div>
     )
