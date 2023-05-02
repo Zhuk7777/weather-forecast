@@ -119,3 +119,33 @@
     border: solid 1px aliceblue;
     background: rgb(107, 175, 235);
 }
+
+.sunrise {
+    padding: 2px;
+    border: solid 1px rgb(247, 158, 34);
+    border-radius: 6px;
+    margin-left: 140px;
+    font-size: 16px;
+}
+
+.sunset {
+    padding: 2px;
+    border: solid 1px rgb(92, 99, 239);
+    border-radius: 6px;
+    margin-left: 6px;
+    font-size: 16px;
+}
+
+.pressure{
+    display: block;
+    float: right;
+    margin-left: 8px;
+    margin-top: 3px;
+    font-size: 16px;
+}
+
+.location {
+    padding: 4px;
+    background: #454444;
+    border-radius: 6px;
+}

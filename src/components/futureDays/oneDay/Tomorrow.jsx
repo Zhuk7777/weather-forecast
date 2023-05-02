@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from './CertainDay.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faTreeCity } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faGaugeHigh, faMoon, faSun, faTreeCity } from "@fortawesome/free-solid-svg-icons";
 
 const Tomorrow = ({data}) => {
 
@@ -11,8 +11,13 @@ const Tomorrow = ({data}) => {
   const [temp, setTemp] = useState('')
   const [wind, setWind] = useState('')
   const [humidity, setHumidity] = useState('')
-  const [city,setCity] = useState('')
-  const [date, setDate] = useState('')
+  const [headerInfo, setHeaderInfo] = useState({
+            city: '',
+            date: '',
+            pressure: '',
+            sunrise: '',
+            sunset: '',
+  })
 
   useEffect( () => {
 
@@ -40,8 +45,14 @@ const Tomorrow = ({data}) => {
       let options = { weekday: 'long', month: 'long', day: 'numeric'};
       let today  = new Date(data.forecast.forecastday[1].date);
 
-      setCity(data.location.name)
-      setDate(today.toLocaleDateString("rus", options))
+      setHeaderInfo({
+        city: data.location.name,
+        date:today.toLocaleDateString("rus", options),
+        pressure: (data.forecast.forecastday[1].hour[13].pressure_mb*0.75).toFixed(2),
+        sunrise: data.forecast.forecastday[1].astro.sunrise,
+        sunset:  data.forecast.forecastday[1].astro.sunset
+
+      })
 
       setTime(arrTime)
       setImage(arrImage)
@@ -51,13 +62,37 @@ const Tomorrow = ({data}) => {
 
   }, [data])
 
+  const convertTime12to24 = time12h => {
+    const [time, modifier] = time12h.split(" ")
+  
+    let [hours, minutes] = time.split(":")
+  
+    if (hours === "12") {
+      hours = "00"
+    }
+  
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12
+    }
+  
+    return `${hours}:${minutes}`
+  } 
+
     return (
-      city === ''? <div></div>:
+      headerInfo.city === ''? <div></div>:
         <div className={classes.card}>
 
           <div className={classes.header}>
-            <span className={classes.city}><FontAwesomeIcon icon={faTreeCity} />  {city} </span>
-            <span className={classes.date}><FontAwesomeIcon icon={faCalendarDays} />  {date}</span>
+
+            <div className={classes.location}>
+                <span className={classes.city}><FontAwesomeIcon icon={faTreeCity} />  {headerInfo.city} </span>
+                <span className={classes.date}><FontAwesomeIcon icon={faCalendarDays} />  {headerInfo.date}</span>
+            </div>
+
+            <div className={classes.sunrise}>Рассвет {convertTime12to24(headerInfo.sunrise)} <FontAwesomeIcon icon={faSun}/> </div>
+            <div className={classes.sunset}>Закат {convertTime12to24(headerInfo.sunset)} <FontAwesomeIcon icon={faMoon}/> </div>
+            <div className={classes.pressure}><FontAwesomeIcon icon={faGaugeHigh} /> {headerInfo.pressure} мм рт. ст.</div>
+            
           </div>
 
           <div className={classes.time}>
