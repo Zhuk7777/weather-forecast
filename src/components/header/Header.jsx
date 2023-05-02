@@ -18,7 +18,7 @@ const Header = ({getCity, error}) => {
 
     const myPlaceholder = useMemo(() => {
         if(error)
-            return "Город не найден"
+            return `Город не найден`
         else
             return "Введите название города"
     }, [error])

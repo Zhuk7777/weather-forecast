@@ -2,27 +2,12 @@ import React from "react";
 import classes from './AdditionalInfo.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun, faGaugeHigh, faDroplet, faWind } from "@fortawesome/free-solid-svg-icons";
+import convertTime12to24 from "../../../generalfunctions/convertTime12to24";
 
 
 const AdditionalInfo = ({sunrise, sunset, tempNight, tempMorning, tempDay, tempEvening, pressure,
     humidity, wind, descriptionDay, descriptionNigth, descriptionMorning, descriptionEvening, 
     imgNight, imgMorning, imgDay, imgEvening}) => {
-
-    const convertTime12to24 = time12h => {
-        const [time, modifier] = time12h.split(" ")
-      
-        let [hours, minutes] = time.split(":")
-      
-        if (hours === "12") {
-          hours = "00"
-        }
-      
-        if (modifier === "PM") {
-          hours = parseInt(hours, 10) + 12
-        }
-      
-        return `${hours}:${minutes}`
-      } 
 
     return(
         <div className={classes.addInfo}>

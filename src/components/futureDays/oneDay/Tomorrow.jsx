@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from './CertainDay.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faGaugeHigh, faMoon, faSun, faTreeCity } from "@fortawesome/free-solid-svg-icons";
+import convertTime12to24 from "../../../generalfunctions/convertTime12to24";
 
 const Tomorrow = ({data}) => {
 
@@ -42,12 +43,12 @@ const Tomorrow = ({data}) => {
   
       }
 
-      let options = { weekday: 'long', month: 'long', day: 'numeric'};
-      let today  = new Date(data.forecast.forecastday[1].date);
+      let options = { weekday: 'long', month: 'long', day: 'numeric'}
+      let today  = new Date(data.forecast.forecastday[1].date)
 
       setHeaderInfo({
         city: data.location.name,
-        date:today.toLocaleDateString("rus", options),
+        date: today.toLocaleDateString("rus", options),
         pressure: (data.forecast.forecastday[1].hour[13].pressure_mb*0.75).toFixed(2),
         sunrise: data.forecast.forecastday[1].astro.sunrise,
         sunset:  data.forecast.forecastday[1].astro.sunset
@@ -61,22 +62,6 @@ const Tomorrow = ({data}) => {
       setHumidity(arrHumidity)
 
   }, [data])
-
-  const convertTime12to24 = time12h => {
-    const [time, modifier] = time12h.split(" ")
-  
-    let [hours, minutes] = time.split(":")
-  
-    if (hours === "12") {
-      hours = "00"
-    }
-  
-    if (modifier === "PM") {
-      hours = parseInt(hours, 10) + 12
-    }
-  
-    return `${hours}:${minutes}`
-  } 
 
     return (
       headerInfo.city === ''? <div></div>:

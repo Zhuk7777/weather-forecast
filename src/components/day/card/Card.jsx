@@ -5,8 +5,8 @@ import { faTemperatureHalf } from "@fortawesome/free-solid-svg-icons";
 
 const Card = ({city, country, degrees, feelTemp, weather, date, img}) => {
     
-    let options = { weekday: 'long', month: 'long', day: 'numeric'};
-    let today  = new Date(date);
+    let options = { weekday: 'long', month: 'long', day: 'numeric'}
+    let today  = new Date(date)
 
     return(
         <div className={classes.card}>

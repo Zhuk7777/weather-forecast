@@ -3,7 +3,7 @@
     flex-direction: column;
 
     margin-top: 11px;
-    margin-left: 20px;
+    margin-left: 15%;
     width: 840px;
 
     background-color: rgb(58, 56, 56);
@@ -79,7 +79,7 @@
     line-height: 1;
 
     padding: 20px;
-    height: 60px;
+    height: 70px;
     margin-left: 10px;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .caption {
-    margin-left: 30px;
+    margin-left: 40px;
     font-size: 17px;
 
 }
@@ -121,15 +121,15 @@
 }
 
 .sunrise {
-    padding: 2px;
+    padding: 4px;
     border: solid 1px rgb(247, 158, 34);
     border-radius: 6px;
-    margin-left: 140px;
+    margin-left: 170px;
     font-size: 16px;
 }
 
 .sunset {
-    padding: 2px;
+    padding: 4px;
     border: solid 1px rgb(92, 99, 239);
     border-radius: 6px;
     margin-left: 6px;
@@ -140,7 +140,7 @@
     display: block;
     float: right;
     margin-left: 8px;
-    margin-top: 3px;
+    margin-top: 5px;
     font-size: 16px;
 }
 
