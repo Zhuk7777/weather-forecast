@@ -132,14 +132,14 @@
     padding: 4px;
     border: solid 1px rgb(92, 99, 239);
     border-radius: 6px;
-    margin-left: 6px;
+    margin-left: 8px;
     font-size: 16px;
 }
 
 .pressure{
     display: block;
     float: right;
-    margin-left: 8px;
+    margin-left: 15px;
     margin-top: 5px;
     font-size: 16px;
 }
