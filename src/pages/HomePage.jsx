@@ -4,7 +4,7 @@ import ControlPanel from "../components/сontrolPanel/ControlPanel";
 import InfoField from "../components/infoField/InfoField";
 import Header from "../components/header/Header";
 
-const apiKey='6c2cf4ff55624dee90594748232304'
+const apiKey = process.env.REACT_APP_API_KEY
 
 function HomePage() {
 
@@ -54,7 +54,7 @@ function HomePage() {
 
   return (
     <div className="App">
-      <Header getCity={getCity} error={error}/>
+      <Header getCity={getCity} error={error} apiKey={apiKey}/>
       <ControlPanel getSelection={getSelection}/>
       <InfoField data={data} addData={addData} selection={selection}/>
     </div>

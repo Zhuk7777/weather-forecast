@@ -3,7 +3,7 @@ import classes from './Header.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUmbrella} from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({getCity, error}) => {
+const Header = ({getCity, error, apiKey}) => {
     
     const [city, setCity] = useState('')
     const [visible, setVisible] = useState(false)
@@ -38,7 +38,7 @@ const Header = ({getCity, error}) => {
 
         if(city.trim() !== '')
         {
-            let url = `http://api.weatherapi.com/v1/search.json?key=6c2cf4ff55624dee90594748232304&q=${city}`
+            let url = `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${city}`
             fetch(url).then((response) => {
                 return response.json()
               }).then((data) => { 
