@@ -1,10 +1,10 @@
 import React from 'react'
-import Form from '../UI/Form';
+import SignInForm from '../UI/SignInForm';
 
 const LoginPage = () => {
   return (
     <div>
-        <Form textButton={'Войти'}/>
+      <SignInForm/>
     </div>
   )
 }

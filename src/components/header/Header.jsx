@@ -73,7 +73,7 @@ const Header = ({getCity, error, apiKey}) => {
         <div className={classes.header} onClick={clickOutside}>
             <h1 className={classes.title}>Weather AMM<FontAwesomeIcon icon={faUmbrella}/></h1>
             <form className={classes.form}>
-                <input className={classes.input} type="text" 
+                <input className={classes.input} type="search" 
                 placeholder={myPlaceholder}
                 value={city} onChange={c => changeInput(c.target.value)}/>
                 <button className={classes.btn} onClick={sendCity}>Показать</button>
