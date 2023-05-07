@@ -7,6 +7,7 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "
 const RegisterPage = () => {
   const navigate = useNavigate()
   const [error, setError] = useState('')
+  const [verification, setVerification] = useState(false)
 
   const handleRegister = (email, password, name) => {
     const auth = getAuth();
@@ -21,8 +22,10 @@ const RegisterPage = () => {
       .then(() =>{
         sendEmailVerification(auth.currentUser)
         .then(()=> {
-            console.log(auth.currentUser.emailVerified)
-            //navigate('/')
+            if (auth.currentUser.emailVerified === false)
+              setVerification(true)
+            else
+              navigate('/')
         })
       }
       )
@@ -33,10 +36,16 @@ const RegisterPage = () => {
       
   }
   return (
-    <div>
-       <SignUpForm handleClick={handleRegister} error={error}/>
-       <Link className={classes.signIn} to='/login'><span>Уже есть аккаунт</span></Link>
-    </div>
+      verification?
+      <div className={classes.verificationCard}>
+        <h3>Подтвердите адрес электронной почты</h3>
+        <span>На вашу почту отправлено письмо для подтверждения. Пока почта не будет подтверждена регистрация не закончится</span>
+        <button onClick={() => setVerification(auth.currentUser.emailVerified)}>Продолжить</button>
+      </div>:
+      <div>
+        <SignUpForm handleClick={handleRegister} error={error}/>
+        <Link className={classes.signIn} to='/login'><span>Уже есть аккаунт</span></Link>
+      </div>
   )
 }
 
