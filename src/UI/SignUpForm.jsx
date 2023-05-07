@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import classes from './Form.module.css';
 
-const SignUpForm = ({handleClick}) => {
+const SignUpForm = ({handleClick, error}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
+
+  
 
   return (
     <div className={classes.form}> 
@@ -30,6 +32,11 @@ const SignUpForm = ({handleClick}) => {
           placeholder='Пароль'
         />
         <button className={classes.btn} onClick={() => handleClick(email, password, name)}>Зарегистрироваться</button>
+        {
+          error?
+          <div className={classes.error}>{error}</div>
+          :<span></span>
+        }
     </div>
   )
 }

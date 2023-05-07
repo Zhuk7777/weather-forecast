@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import classes from './Form.module.css';
 
-const SignInForm = ({handleClick, visibleError}) => {
+const SignInForm = ({handleClick, error}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const sendEmailAndPass = () => {
+    handleClick(email, password) 
+    setEmail('')
+    setPassword('')
+  }
 
   return (
     <div className={classes.form}> 
@@ -21,10 +27,10 @@ const SignInForm = ({handleClick, visibleError}) => {
           type='password' 
           placeholder='Пароль'
         />
-        <button className={classes.btn} onClick={() => handleClick(email, password) }>Войти</button>
+        <button className={classes.btn} onClick={() => sendEmailAndPass()}>Войти</button>
         {
-          visibleError?
-          <div className={classes.error}>Почта или пароль введены неверно</div>
+          error?
+          <div className={classes.error}>{error}</div>
           :<span></span>
         } 
     </div>
