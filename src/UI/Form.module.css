@@ -15,7 +15,7 @@
     border: 1px solid rgb(214, 213, 213);
     box-shadow: 0px 5px 20px #040404;
     color: aliceblue;
-    background-image: url(https://f.vividscreen.info/soft/ff15e6650f518adaeb5702aff546f3d0/Deep-Clouds-800x600.jpg);
+    background-image: url(backgroundImg.jpg);
     opacity: 0.95;
 }
 
@@ -31,4 +31,16 @@
 .btn:hover {
     opacity: 0.95;
     cursor: pointer;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    opacity: 0.83;
+    border-radius: 6px;
+    border: aliceblue;
+    width: 100%;
+    padding: 3px;
+    background: aliceblue;
+    color: crimson;
 }

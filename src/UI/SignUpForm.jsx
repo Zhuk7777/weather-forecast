@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './Form.module.css';
 
-const SignUpForm = () => {
+const SignUpForm = ({handleClick}) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
 
   return (
     <div className={classes.form}> 
-        <input className={classes.input} type='email' placeholder='Почта'/>
-        <input className={classes.input} type='text' placeholder='Имя'/>
-        <input className={classes.input} type='password' placeholder='Пароль'/>
-        <button className={classes.btn}>Зарегистрироваться</button>
+        <input
+          className={classes.input} 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type='email' 
+          placeholder='Почта'
+        />
+        <input 
+          className={classes.input} 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          type='text' 
+          placeholder='Имя'
+        />
+        <input 
+          className={classes.input} 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type='password' 
+          placeholder='Пароль'
+        />
+        <button className={classes.btn} onClick={() => handleClick(email, password, name)}>Зарегистрироваться</button>
     </div>
   )
 }
