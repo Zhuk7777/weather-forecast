@@ -6,8 +6,6 @@ const SignUpForm = ({handleClick, error}) => {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
 
-  
-
   return (
     <div className={classes.form}> 
         <input

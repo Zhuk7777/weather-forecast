@@ -10,8 +10,11 @@ const RegisterPage = () => {
 
   const handleRegister = (email, password, name) => {
     const auth = getAuth();
+
     if(password.length < 6)
       setError('Пароль должен сожержать не менее 6 символов')
+    else if(email === '' || name === '')
+      setError('Заполните все поля')
     else{ 
       setError('') 
       createUserWithEmailAndPassword(auth, email, password)

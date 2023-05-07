@@ -3,18 +3,23 @@ import SignInForm from '../UI/SignInForm';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginPage = () => {
-  const [visibleError, setVisibleError] = useState(false)
+  const [error, setError] = useState('')
 
   const handleLogin = (email, password) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() =>setVisibleError(false)
-      )
-      .catch(() => setVisibleError(true))
+    if(email === '')
+      setError('Заполните поля')
+    else
+    {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() =>setError('')
+        )
+        .catch(() => setError('Почта или пароль введены неверно'))
+    }
   }
   return (
     <div>
-      <SignInForm handleClick={handleLogin} visibleError={visibleError}/>
+      <SignInForm handleClick={handleLogin} error={error}/>
     </div>
   )
 }

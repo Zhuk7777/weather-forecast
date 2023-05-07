@@ -5,12 +5,6 @@ const SignInForm = ({handleClick, error}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const sendEmailAndPass = () => {
-    handleClick(email, password) 
-    setEmail('')
-    setPassword('')
-  }
-
   return (
     <div className={classes.form}> 
         <input
@@ -27,7 +21,7 @@ const SignInForm = ({handleClick, error}) => {
           type='password' 
           placeholder='Пароль'
         />
-        <button className={classes.btn} onClick={() => sendEmailAndPass()}>Войти</button>
+        <button className={classes.btn} onClick={() => handleClick(email, password) }>Войти</button>
         {
           error?
           <div className={classes.error}>{error}</div>
