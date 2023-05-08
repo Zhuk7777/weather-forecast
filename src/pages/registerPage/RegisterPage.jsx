@@ -3,10 +3,10 @@ import { Link,useNavigate } from 'react-router-dom';
 import classes from './RegisterPage.module.css';
 import SignUpForm from '../../UI/SignUpForm';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/userSlice';
 import database from '../../firebase';
 import { ref, set} from "firebase/database";
+import { useDispatch } from 'react-redux';
 
 const RegisterPage = () => {
 

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import SignInForm from '../../UI/SignInForm';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './LoginPage.module.css';
-import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/userSlice';
 import { ref, get} from "firebase/database";
 import database from '../../firebase';
+import { useDispatch } from 'react-redux';
 
 const LoginPage = () => {
 
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
   const [error, setError] = useState('')
   const [resetMessage, setResetMessage] = useState(false)
   const navigate = useNavigate()
@@ -33,7 +33,6 @@ const LoginPage = () => {
           const dbRef = ref(database, 'users/' + user.uid);
           get(dbRef).then((data) => {
             if (data.exists()) {
-              console.log (data.val())
               dispatch(setUser(data.val()))
             } 
           })
@@ -58,6 +57,7 @@ const LoginPage = () => {
     </div>:
     <div>
       <SignInForm handleClick={handleLogin} error={error} resetPass={resetPassword}/>
+      <Link className={classes.signUp} to='/register'><span>Зарегистрироваться</span></Link>
     </div>
   )
 }
