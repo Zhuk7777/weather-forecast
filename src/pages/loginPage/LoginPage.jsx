@@ -3,8 +3,14 @@ import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "fir
 import SignInForm from '../../UI/SignInForm';
 import { useNavigate } from 'react-router-dom';
 import classes from './LoginPage.module.css';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/slices/userSlice';
+import { ref, get} from "firebase/database";
+import database from '../../firebase';
 
 const LoginPage = () => {
+
+  const dispatch = useDispatch
   const [error, setError] = useState('')
   const [resetMessage, setResetMessage] = useState(false)
   const navigate = useNavigate()
@@ -16,12 +22,23 @@ const LoginPage = () => {
   }
 
   const handleLogin = (email, password) => {
+
     if(email === '' || password === '')
       setError('Заполните поля')
+
     else
     {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then(({user}) =>{
+          let getUser = {}
+          const dbRef = ref(database, 'users/' + user.uid);
+          get(dbRef).then((data) => {
+            if (data.exists()) {
+              getUser = data
+            } 
+          })
+          console.log(getUser)
+          dispatch(setUser(getUser))
           auth.currentUser.reload()
           if(auth.currentUser.emailVerified === true)
           {
