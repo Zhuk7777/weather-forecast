@@ -30,15 +30,13 @@ const LoginPage = () => {
     {
       signInWithEmailAndPassword(auth, email, password)
         .then(({user}) =>{
-          let getUser = {}
           const dbRef = ref(database, 'users/' + user.uid);
           get(dbRef).then((data) => {
             if (data.exists()) {
-              getUser = data
+              console.log (data.val())
+              dispatch(setUser(data.val()))
             } 
           })
-          console.log(getUser)
-          dispatch(setUser(getUser))
           auth.currentUser.reload()
           if(auth.currentUser.emailVerified === true)
           {
