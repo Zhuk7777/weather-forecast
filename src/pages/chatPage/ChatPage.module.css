@@ -1,0 +1,13 @@
+.posts {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+.form {
+    margin-top: 2%;
+    height: 100%;
+    width: 100%;
+    border: 1px solid silver;
+    border-radius: 6px;
+}
