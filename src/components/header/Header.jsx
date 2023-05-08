@@ -20,7 +20,7 @@ const Header = ({getCity, error, apiKey}) => {
         if(error)
             return `Город не найден`
         else
-            return "Введите название города"
+            return "Введите город"
     }, [error])
 
     const myclass = useMemo (() => {
