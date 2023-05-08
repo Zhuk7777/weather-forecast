@@ -35,7 +35,7 @@ const RegisterPage = () => {
   }
 
   const continueClick = () => {
-    console.log(auth.currentUser.emailVerified)
+    auth.currentUser.reload()
     if (auth.currentUser.emailVerified === true)
         navigate('/')
    }
@@ -44,8 +44,8 @@ const RegisterPage = () => {
       verification?
       <div className={classes.verificationCard}>
         <h3>Подтвердите адрес электронной почты</h3>
-        <span>На вашу почту отправлено письмо для подтверждения. Пока почта не будет подтверждена регистрация не закончится</span>
-        <button onClick={() => continueClick()}>Продолжить</button>
+        <span>На вашу почту отправлено письмо для подтверждения.Регистрация не будет завершена без подтверждения</span>
+        <button className={classes.btn} onClick={() => continueClick()}>Продолжить</button>
       </div>:
       <div>
         <SignUpForm handleClick={handleRegister} error={error}/>
@@ -55,14 +55,3 @@ const RegisterPage = () => {
 }
 
 export default RegisterPage;
-
-
-/* createUserWithEmailAndPassword(auth, email, password)
-      .then(() =>{
-        sendEmailVerification(auth.currentUser.emailVerified)
-        .then(()=> {
-            navigate('/')
-        })
-      .catch(console.error)
-      }
-      )*/

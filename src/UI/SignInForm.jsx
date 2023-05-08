@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classes from './Form.module.css';
 
-const SignInForm = ({handleClick, error}) => {
+const SignInForm = ({handleClick, error, resetPass}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -22,6 +22,7 @@ const SignInForm = ({handleClick, error}) => {
           placeholder='Пароль'
         />
         <button className={classes.btn} onClick={() => handleClick(email, password) }>Войти</button>
+        <button className={classes.btn} onClick={() => resetPass(email)}>Забыли пароль?</button>
         {
           error?
           <div className={classes.error}>{error}</div>
