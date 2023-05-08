@@ -16,21 +16,24 @@ const LoginPage = () => {
   }
 
   const handleLogin = (email, password) => {
-    auth.currentUser.reload()
     if(email === '' || password === '')
       setError('Заполните поля')
-    else if(auth.currentUser.emailVerified === true)
+    else
     {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          setError('')
-          navigate('/')
+          auth.currentUser.reload()
+          if(auth.currentUser.emailVerified === true)
+          {
+           setError('')
+           navigate('/chat')
+          }
+          else
+            setError('Аккаунт не подтвержден')
         }
         )
         .catch(() => setError('Почта или пароль введены неверно'))
     }
-    else
-      setError('Аккаунт не подтвержден')
   }
   return (
     resetMessage?

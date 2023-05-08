@@ -24,7 +24,7 @@ const RegisterPage = () => {
             if (auth.currentUser.emailVerified === false)
               setVerification(true)
             else
-              navigate('/')
+              navigate('/chat')
         })
       }
       )
@@ -37,7 +37,7 @@ const RegisterPage = () => {
   const continueClick = () => {
     auth.currentUser.reload()
     if (auth.currentUser.emailVerified === true)
-        navigate('/')
+        navigate('/chat')
    }
 
   return (
