@@ -13,7 +13,6 @@ const ChatPage = () => {
 
 
     const getCity = (city) => {
-
       let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
   
       fetch(url).then((response) => {
@@ -46,9 +45,18 @@ const ChatPage = () => {
   return (
     <div>
         <Header getCity={getCity} error={error} apiKey={apiKey}/>
-        <ChatControlPanel city={city} date={date}/>
-        <div className={classes.posts}>
-        </div>
+        <ChatControlPanel/>
+        {
+          city?
+          <div className={classes.form}>
+            <span className={classes.headerChat}>{city} {date}</span>
+            <div className={classes.messagePanel}>
+              <textarea className={classes.textField} cols='67'  rows='2' placeholder='Напишите сообщение'></textarea>
+              <button className={classes.btn}>Отправить</button>
+            </div>
+          </div>
+          :<span></span>
+        }
     </div>
   )
 }

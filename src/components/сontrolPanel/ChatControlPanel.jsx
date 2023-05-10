@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeUser } from "../../store/slices/userSlice";
 
 
-const ChatControlPanel = ({city, date}) => {
+const ChatControlPanel = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -22,9 +22,6 @@ const ChatControlPanel = ({city, date}) => {
     <div className={classes.controlPanel}>
         <button className={classes.button} onClick={() => clickWeather()}>Погода</button>
         <button className={classes.button} onClick={() => changeUser()}>Сменить пользователя</button>
-        <div className={classes.heading}>
-            {city} {date}
-        </div>
     </div>
   )
 }
