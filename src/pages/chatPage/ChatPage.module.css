@@ -19,19 +19,20 @@
     border: none;
 
     min-height: 25px;
+    color: aliceblue;
 }
 
-.form::-webkit-scrollbar {
+.messages::-webkit-scrollbar {
     width: 10px;
     background-color: rgb(46, 46, 46);
   }
   
-.form::-webkit-scrollbar-track {
+.messages::-webkit-scrollbar-track {
     -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
     background-color: rgb(46, 46, 46);
   }
   
-.form::-webkit-scrollbar-thumb {
+.messages::-webkit-scrollbar-thumb {
     background-color: #9198e5;
     background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .25) 25%,
                       transparent 25%,
@@ -45,7 +46,6 @@
 .form {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
 
     margin-top: 3%;
     height: 380px;
@@ -75,4 +75,20 @@
 
 .btn:hover {
     background: #252424;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 250px;
+    width: 100%;
+    padding: 6px;
+    row-gap: 20px;
+
+    background: rgb(46, 46, 46);
+    border-radius: 8px;
 }
