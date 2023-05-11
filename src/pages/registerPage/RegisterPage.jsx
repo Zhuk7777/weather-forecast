@@ -3,14 +3,11 @@ import { Link,useNavigate } from 'react-router-dom';
 import classes from './RegisterPage.module.css';
 import SignUpForm from '../../UI/SignUpForm';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { setUser } from '../../store/slices/userSlice';
 import database from '../../firebase';
 import { ref, set} from "firebase/database";
-import { useDispatch } from 'react-redux';
 
 const RegisterPage = () => {
 
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const [verification, setVerification] = useState(false)
@@ -33,17 +30,17 @@ const RegisterPage = () => {
           id: user.uid,
           name: name,
         }
-        dispatch(setUser(newUser))
-
-        const dbRef = ref(database, 'users/' + user.uid);
-        set(dbRef, newUser);
 
         sendEmailVerification(auth.currentUser)
         .then(()=> {
             if (auth.currentUser.emailVerified === false)
               setVerification(true)
             else
+            {
               navigate('/chat')
+              const dbRef = ref(database, 'users/' + user.uid);
+              set(dbRef, newUser);
+            }
         })
       }
       )

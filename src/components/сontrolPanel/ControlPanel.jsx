@@ -1,18 +1,27 @@
 import React from "react";
 import classes from './ControlPanel.module.css';
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 const ControlPanel = ({getSelection}) => {
 
-    const userId = useSelector(state => state.user.id)
     const navigate = useNavigate()
 
     const chat = () => {
-        if(userId !== null)
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if(user)
+                navigate('/chat')
+            else
+                navigate('/register')
+        });
+
+        //const userId = useSelector(state => state.user.id)
+
+        /*if(userId !== null)
             navigate('/chat')
         else
-            navigate('/register')
+            navigate('/register')*/
     }
 
     return (

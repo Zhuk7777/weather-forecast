@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/header/Header';
 import ChatControlPanel from '../../components/сontrolPanel/ChatControlPanel';
 import classes from './ChatPage.module.css';
 import Message from '../../components/message/Message';
+import { getAuth } from "firebase/auth"
 
 const apiKey = process.env.REACT_APP_API_KEY
 
@@ -12,9 +13,15 @@ const ChatPage = () => {
     const [error, setError] = useState(false) 
     const [date, setDate] = useState('')
     const [messageText, setMessageText] = useState('')
+    let auth = null
+
+    useEffect(() => {
+       auth = getAuth();
+    },[])
 
 
     const getCity = (city) => {
+      console.log(auth.currentUser.email)
       let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
   
       fetch(url).then((response) => {

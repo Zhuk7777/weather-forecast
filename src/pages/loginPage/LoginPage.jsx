@@ -3,14 +3,9 @@ import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "fir
 import SignInForm from '../../UI/SignInForm';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './LoginPage.module.css';
-import { setUser } from '../../store/slices/userSlice';
-import { ref, get} from "firebase/database";
-import database from '../../firebase';
-import { useDispatch } from 'react-redux';
 
 const LoginPage = () => {
 
-  const dispatch = useDispatch()
   const [error, setError] = useState('')
   const [resetMessage, setResetMessage] = useState(false)
   const navigate = useNavigate()
@@ -29,13 +24,7 @@ const LoginPage = () => {
     else
     {
       signInWithEmailAndPassword(auth, email, password)
-        .then(({user}) =>{
-          const dbRef = ref(database, 'users/' + user.uid);
-          get(dbRef).then((data) => {
-            if (data.exists()) {
-              dispatch(setUser(data.val()))
-            } 
-          })
+        .then(() =>{
           auth.currentUser.reload()
           if(auth.currentUser.emailVerified === true)
           {
