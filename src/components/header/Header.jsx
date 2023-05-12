@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classes from './Header.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUmbrella} from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { assignCity } from "../../store/slices/citySlice";
 
 const Header = ({getCity, error, apiKey}) => {
     
@@ -9,12 +11,25 @@ const Header = ({getCity, error, apiKey}) => {
     const [visible, setVisible] = useState(false)
     const [cities, setCities] = useState([])
 
+    const dispatch = useDispatch()
+
     const sendCity = (event) => {
         event.preventDefault()
-        setVisible(false)
+        dispatch(assignCity({
+            city: city.trim(),
+        }))
+        setVisible(false)        
         getCity(city.trim())
         setCity('')
     }
+
+    const storeCity = useSelector(state => state.city.city)
+
+    useEffect(() => {
+        console.log('header')
+        if(storeCity !== null)
+            getCity(storeCity)
+    })
 
     const myPlaceholder = useMemo(() => {
         if(error)

@@ -15,13 +15,6 @@ const ControlPanel = ({getSelection}) => {
             else
                 navigate('/register')
         });
-
-        //const userId = useSelector(state => state.user.id)
-
-        /*if(userId !== null)
-            navigate('/chat')
-        else
-            navigate('/register')*/
     }
 
     return (
