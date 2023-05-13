@@ -69,7 +69,7 @@ const ChatPage = () => {
             <span className={classes.headerChat}>{city} {date}</span>
 
             <div className={classes.messages}>
-              <Message name={'Давид'} text={'Что лучше надеть сегодня?'}/>
+              <Message name={'Давид'} text={'Что лучше надеть сегодня?'} isMyname={true}/>
               <Message name={'Дмитрий'} text={'Не смотря на хорошую температуру, на улице прохладно, холодный сильный ветер. Поэтому лучше оденьтесь потеплее'}/>
               <Message name={'Светлана'} text={'Дмитрий, полностью согласна. Посмотрела утром прогноз погоды и казалось, что на улице тепло, оделась легко и уже промерзла'}/>
               <Message name={'Давид'} text={'Спасибо'}/>
