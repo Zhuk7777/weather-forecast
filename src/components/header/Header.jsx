@@ -29,7 +29,7 @@ const Header = ({getCity, error, apiKey}) => {
         console.log('header')
         if(storeCity !== null)
             getCity(storeCity)
-    })
+    },[])
 
     const myPlaceholder = useMemo(() => {
         if(error)
