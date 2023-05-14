@@ -4,21 +4,40 @@ import ChatControlPanel from '../../components/сontrolPanel/ChatControlPanel';
 import classes from './ChatPage.module.css';
 import Message from '../../components/message/Message';
 import { getAuth } from "firebase/auth"
+import database from '../../firebase';
+import { ref, set, onValue } from "firebase/database";
 
 const apiKey = process.env.REACT_APP_API_KEY
 
 const ChatPage = () => {
-
     const [city, setCity] = useState('') 
     const [error, setError] = useState(false) 
-    const [date, setDate] = useState('')
     const [messageText, setMessageText] = useState('')
+    const [messages, setMessages] = useState('')
     let auth = null
 
     useEffect(() => {
-       auth = getAuth();
-    },[])
-
+        auth = getAuth()
+        let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
+  
+        fetch(url).then((response) => {
+          return response.json()
+        }).then((data) => {
+    
+          if(!data.error)
+          {
+            let options = { year: 'numeric', month: 'long', day: 'numeric'}
+            let today  = new Date(data.location.localtime)
+            const dbRef = ref(database, `messages/${city}/${today.toLocaleDateString("rus", options).slice(0, -1)}`);
+            onValue(dbRef, (snapshot) => {
+              const data = snapshot.val();
+              //console.log(Object.values(data))
+              setMessages(Object.values(data))
+              });
+          }
+    
+        })
+    },[city])
 
     const getCity = (city) => {
       let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
@@ -31,7 +50,6 @@ const ChatPage = () => {
         {
           setError(true)
           setCity('')
-          setDate('')
         }
   
         else
@@ -41,10 +59,6 @@ const ChatPage = () => {
           city = city.toLowerCase()
           city = city[0].toUpperCase() + city.slice(1)
           setCity(city)
-
-          let options = {month: 'long', day: 'numeric'}
-          let today  = new Date(data.location.localtime)
-          setDate(today.toLocaleDateString("rus", options))
         }
   
       })
@@ -53,8 +67,29 @@ const ChatPage = () => {
     const sendMessage = (text) => {
       if(text !== '')
       {
-        console.log(text)
-        setMessageText('')
+        auth = getAuth()
+        const newMessage = {
+          name: auth.currentUser.displayName,
+          id: auth.currentUser.uid,
+          text: text,
+        }
+
+        let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
+  
+        fetch(url).then((response) => {
+          return response.json()
+        }).then((data) => {
+    
+          if(!data.error)
+          {
+            let options = { year: 'numeric', month: 'long', day: 'numeric'}
+            let today  = new Date(data.location.localtime)
+            const dbRef = ref(database, `messages/${city}/${today.toLocaleDateString("rus", options).slice(0, -1)}/` + Date.now() + auth.currentUser.uid);
+            set(dbRef, newMessage);
+            setMessageText('')
+          }
+    
+        })
       }
     }
 
@@ -66,7 +101,7 @@ const ChatPage = () => {
           city?
           <div className={classes.form}>
 
-            <span className={classes.headerChat}>{city} {date}</span>
+            <span className={classes.headerChat}>{city}</span>
 
             <div className={classes.messages}>
               <Message name={'Давид'} text={'Что лучше надеть сегодня?'} isMyname={true}/>

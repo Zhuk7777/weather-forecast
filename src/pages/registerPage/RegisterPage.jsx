@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import classes from './RegisterPage.module.css';
 import SignUpForm from '../../UI/SignUpForm';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 
 const RegisterPage = () => {
-  
+
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const [verification, setVerification] = useState(false)
@@ -23,7 +23,9 @@ const RegisterPage = () => {
       setError('') 
       createUserWithEmailAndPassword(auth, email, password)
       .then(() =>{
-        auth.currentUser.displayName = name
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          })
         sendEmailVerification(auth.currentUser)
         .then(()=> {
           setVerification(true)
