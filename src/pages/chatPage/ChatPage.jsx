@@ -14,10 +14,10 @@ const ChatPage = () => {
     const [error, setError] = useState(false) 
     const [messageText, setMessageText] = useState('')
     const [messages, setMessages] = useState('')
-    let auth = null
+    const [auth, setAuth] = useState(getAuth())
+    const [date, setDate] = useState('')
 
     useEffect(() => {
-        auth = getAuth()
         let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
   
         fetch(url).then((response) => {
@@ -27,12 +27,18 @@ const ChatPage = () => {
           if(!data.error)
           {
             let options = { year: 'numeric', month: 'long', day: 'numeric'}
+            let optionsHeader = { month: 'long', day: 'numeric'}
             let today  = new Date(data.location.localtime)
+
+            setDate(today.toLocaleDateString("rus", optionsHeader))
+            
             const dbRef = ref(database, `messages/${city}/${today.toLocaleDateString("rus", options).slice(0, -1)}`);
             onValue(dbRef, (snapshot) => {
               const data = snapshot.val();
-              //console.log(Object.values(data))
-              setMessages(Object.values(data))
+              if(data)
+                setMessages(Object.values(data))
+              else 
+                setMessages('')
               });
           }
     
@@ -67,7 +73,6 @@ const ChatPage = () => {
     const sendMessage = (text) => {
       if(text !== '')
       {
-        auth = getAuth()
         const newMessage = {
           name: auth.currentUser.displayName,
           id: auth.currentUser.uid,
@@ -101,13 +106,17 @@ const ChatPage = () => {
           city?
           <div className={classes.form}>
 
-            <span className={classes.headerChat}>{city}</span>
+            <span className={classes.headerChat}>{city} {date}</span>
 
             <div className={classes.messages}>
-              <Message name={'Давид'} text={'Что лучше надеть сегодня?'} isMyname={true}/>
-              <Message name={'Дмитрий'} text={'Не смотря на хорошую температуру, на улице прохладно, холодный сильный ветер. Поэтому лучше оденьтесь потеплее'}/>
-              <Message name={'Светлана'} text={'Дмитрий, полностью согласна. Посмотрела утром прогноз погоды и казалось, что на улице тепло, оделась легко и уже промерзла'}/>
-              <Message name={'Давид'} text={'Спасибо'}/>
+                { 
+                  messages?
+                  messages.map((item, index) => 
+                    item.id === auth.currentUser.uid?
+                    <Message name={item.name} text={item.text} key={index} isMyname={true}/>
+                    :<Message name={item.name} text={item.text} key={index} isMyname={false}/>) 
+                  :<span></span>
+                }
             </div>
 
             <div className={classes.messagePanel}>
