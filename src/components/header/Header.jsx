@@ -26,7 +26,6 @@ const Header = ({getCity, error, apiKey}) => {
     const storeCity = useSelector(state => state.city.city)
 
     useEffect(() => {
-        console.log('header')
         if(storeCity !== null)
             getCity(storeCity)
     },[])

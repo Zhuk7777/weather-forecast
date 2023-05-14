@@ -3,11 +3,9 @@ import { Link,useNavigate } from 'react-router-dom';
 import classes from './RegisterPage.module.css';
 import SignUpForm from '../../UI/SignUpForm';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import database from '../../firebase';
-import { ref, set} from "firebase/database";
 
 const RegisterPage = () => {
-
+  
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const [verification, setVerification] = useState(false)
@@ -24,23 +22,11 @@ const RegisterPage = () => {
     else{ 
       setError('') 
       createUserWithEmailAndPassword(auth, email, password)
-      .then(({user}) =>{
-        const newUser = {
-          email: user.email,
-          id: user.uid,
-          name: name,
-        }
-
+      .then(() =>{
+        auth.currentUser.displayName = name
         sendEmailVerification(auth.currentUser)
         .then(()=> {
-            if (auth.currentUser.emailVerified === false)
-              setVerification(true)
-            else
-            {
-              navigate('/chat')
-              const dbRef = ref(database, 'users/' + user.uid);
-              set(dbRef, newUser);
-            }
+          setVerification(true)
         })
       }
       )

@@ -10,7 +10,7 @@ const ControlPanel = ({getSelection}) => {
     const chat = () => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
-            if(user)
+            if(user && user.emailVerified === true)
                 navigate('/chat')
             else
                 navigate('/register')
