@@ -51,3 +51,17 @@
     transform: scale(1.02);
     cursor: pointer;
 }
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+   
+    border: none;
+    border-radius: 0 0 6px 6px;
+    line-height: 1;
+    background-color: #353434;
+    margin-top: 3.2%;
+    margin-left: 5.2%;
+    padding: 5px;
+}
