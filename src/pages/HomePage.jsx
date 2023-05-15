@@ -3,6 +3,7 @@ import '../styles/App.css'
 import ControlPanel from "../components/сontrolPanel/ControlPanel";
 import InfoField from "../components/infoField/InfoField";
 import Header from "../components/header/Header";
+import Loading from "../components/loading/Loading";
 
 const apiKey = process.env.REACT_APP_API_KEY
 
@@ -12,6 +13,7 @@ function HomePage() {
   const [error,setError] = useState(false)
   const [data, setData] = useState('')
   const [addData, setAddData] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const getSelection = (selection) => {
     setSelection(selection)
@@ -19,6 +21,8 @@ function HomePage() {
 
 
   const getCity = (city) => {
+
+    setLoading(true)
 
     let url1 =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
     let url2 =`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7`
@@ -49,6 +53,7 @@ function HomePage() {
       }
 
     })
+    setTimeout(() => setLoading(false),2000);
   }
 
 
@@ -56,7 +61,11 @@ function HomePage() {
     <div className="App">
       <Header getCity={getCity} error={error} apiKey={apiKey}/>
       <ControlPanel getSelection={getSelection}/>
+      {
+      !loading?
       <InfoField data={data} addData={addData} selection={selection}/>
+      :<Loading/>
+      }
     </div>
   );
 }

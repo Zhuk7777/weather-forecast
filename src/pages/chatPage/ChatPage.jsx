@@ -6,6 +6,7 @@ import Message from '../../components/message/Message';
 import { getAuth } from "firebase/auth"
 import database from '../../firebase';
 import { ref, set, onValue } from "firebase/database";
+import Loading from '../../components/loading/Loading';
 
 const apiKey = process.env.REACT_APP_API_KEY
 
@@ -16,6 +17,7 @@ const ChatPage = () => {
     const [messages, setMessages] = useState('')
     const [auth, setAuth] = useState(getAuth())
     const [date, setDate] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
@@ -46,6 +48,7 @@ const ChatPage = () => {
     },[city])
 
     const getCity = (city) => {
+      setLoading(true);
       let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
   
       fetch(url).then((response) => {
@@ -68,6 +71,7 @@ const ChatPage = () => {
         }
   
       })
+      setTimeout(() => setLoading(false), 2000);
     }
 
     const timeOfDay = (time) => {
@@ -125,11 +129,13 @@ const ChatPage = () => {
 
             <div className={classes.messages}>
                 { 
+                !loading?
                   messages?
                   messages.map((item, index) => 
                     <Message name={item.name} text={item.text} key={index} time={item.time}/>
                     ) 
                   :<span></span>
+                :<Loading/>
                 }
             </div>
 
