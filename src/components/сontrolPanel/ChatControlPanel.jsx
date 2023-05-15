@@ -54,8 +54,8 @@ const ChatControlPanel = () => {
           user.name?
           <div className={classes.userInfo}>
             <span>Текущий пользователь</span>
-            <span>{user.name}</span>
-            <span>{user.email}</span>
+            <span style={{color: '#9198e5'}}>{user.name}</span>
+            <span style={{color: '#9198e5'}}>{user.email}</span>
           </div>:
           <div></div>
         }
