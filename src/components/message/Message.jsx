@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Message.module.css';
 
-const Message = ({name, text, isMyname}) => {
-
-  const [styleName, setStyleName] = useState('')
-
-  useEffect(() =>{
-    if(isMyname)
-      setStyleName(classes.myName)
-    else
-      setStyleName(classes.name)
-  },[])
+const Message = ({name, text, time}) => {
 
   return (
     <div className={classes.message}>
-        <span className={styleName}>{name}</span>
+        <span className={classes.header}>
+          <span className={classes.name}>{name}</span>
+          <span className={classes.time}>{time}</span>
+        </span>
         <span>{text}</span>
     </div>
   )

@@ -70,15 +70,22 @@ const ChatPage = () => {
       })
     }
 
+    const timeOfDay = (time) => {
+      if(time >= 0 && time < 5)
+        return 'ночь'
+      if(time >= 5 && time< 12)
+        return 'утро'
+      if(time >=12 && time < 17)
+        return 'день'
+      if(time >=17 && time < 22)
+        return 'вечер'
+      if(time >=22)
+        return 'ночь'
+    }
+
     const sendMessage = (text) => {
       if(text !== '')
       {
-        const newMessage = {
-          name: auth.currentUser.displayName,
-          id: auth.currentUser.uid,
-          text: text,
-        }
-
         let url =`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
   
         fetch(url).then((response) => {
@@ -89,6 +96,14 @@ const ChatPage = () => {
           {
             let options = { year: 'numeric', month: 'long', day: 'numeric'}
             let today  = new Date(data.location.localtime)
+
+            const newMessage = {
+              name: auth.currentUser.displayName,
+              id: auth.currentUser.uid,
+              text: text,
+              time: timeOfDay(today.getHours()),
+            }
+
             const dbRef = ref(database, `messages/${city}/${today.toLocaleDateString("rus", options).slice(0, -1)}/` + Date.now() + auth.currentUser.uid);
             set(dbRef, newMessage);
             setMessageText('')
@@ -112,9 +127,8 @@ const ChatPage = () => {
                 { 
                   messages?
                   messages.map((item, index) => 
-                    item.id === auth.currentUser.uid?
-                    <Message name={item.name} text={item.text} key={index} isMyname={true}/>
-                    :<Message name={item.name} text={item.text} key={index} isMyname={false}/>) 
+                    <Message name={item.name} text={item.text} key={index} time={item.time}/>
+                    ) 
                   :<span></span>
                 }
             </div>

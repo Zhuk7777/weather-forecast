@@ -13,11 +13,16 @@
 }
 
 .name {
-    background: rgb(46, 46, 46);
     color: #9198e5;
 }
 
-.myName {
+.time {
+    color: aliceblue;
+    font-size: 12px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
     background: rgb(46, 46, 46);
-    color: #ee7bea;
 }
